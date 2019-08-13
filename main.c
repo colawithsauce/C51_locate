@@ -1,5 +1,7 @@
-#include "reg52.h"
+#include "reg51.h"
+#include "string.h"
 #define GPRMC_TERM "$GPRMC,"    //定义要解析的指令，因为这条指令包含定位和时间信息
+#define MAX_DATA 68
 typedef unsigned int u16;    //对数据类型进行声明定义
 typedef unsigned char u8;
 
@@ -12,7 +14,7 @@ struct rcvdata  {
 };
 */
 
-char receiveData[68] = {};
+char receiveData[MAX_DATA];
 
 
 
@@ -21,8 +23,8 @@ void UsartInit()
     SCON=0X50;          //设置为工作方式1
     TMOD=0X20;          //设置计数器工作方式2
     PCON=0X80;          //波特率加倍
-    TH1=0XF3;           //计数器初始值设置，注意波特率是4800的
-    TL1=0XF3;
+    TH1=0XFA;           //计数器初始值设置，注意波特率是4800的
+    TL1=0XFA;
     ES=1;               //打开接收中断
     EA=1;               //打开总中断
     TR1=1;              //打开计数器
@@ -37,13 +39,26 @@ void main()
 
 void Usart() interrupt 4
 {
-    u8 receiveData;
+    u8 i;
+    char identity[7] = GPRMC_TERM;
+    
+    for (i=0; i<MAX_DATA; i++){
+        receiveData[i] = SBUF;
+        RI = 0;
+    }//内容全接收
 
-    receiveData=SBUF;//出去接收到的数据
-    RI = 0;//清除接收中断标志位
-    SBUF=receiveData;//将接收到的数据放入到发送寄存器
-    while(!TI);			 //等待发送数据完成
-    TI=0;						 //清除发送完成标志位
+    if (strncmp(identity, receiveData, 7) == 0){ //假如验证位正确
+        while (1){
+            i++;
+            if (receiveData[i] != '\n'){
+                SBUF = receiveData[i];
+                while(!TI);
+                TI=0;
+            }else{
+                break;
+            }
+        }
+    }
 }
 
 

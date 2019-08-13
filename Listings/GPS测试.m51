@@ -1,0 +1,194 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/12/2019  23:24:28  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\GPS≤‚ ‘ PRINT (.\Listings\GPS≤‚ ‘.m51) 
+>> RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+  D:\KEIL5\C51\LIB\C51S.LIB (?C?COPY)
+  D:\KEIL5\C51\LIB\C51S.LIB (STRNCMP)
+  D:\KEIL5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\GPS≤‚ ‘ (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0044H     UNIT         ?DT?MAIN
+            DATA    004CH     0010H     UNIT         _DATA_GROUP_
+            IDATA   005CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0016H     UNIT         ?PR?USARTINIT?MAIN
+            CODE    0019H     0007H     UNIT         ?CO?MAIN
+                    0020H     0003H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     010FH     UNIT         ?C?LIB_CODE
+            CODE    0135H     008FH     UNIT         ?PR?USART?MAIN
+            CODE    01C4H     006FH     UNIT         ?PR?_STRNCMP?STRNCMP
+            CODE    0233H     000CH     UNIT         ?C_C51STARTUP
+            CODE    023FH     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\GPS≤‚ ‘ (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?USARTINIT?MAIN
+
+*** NEW ROOT ***************************************************
+
+?PR?USART?MAIN                 004CH    0008H
+  +--> ?CO?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/12/2019  23:24:28  PAGE 2
+
+
+  +--> ?PR?_STRNCMP?STRNCMP
+
+?PR?_STRNCMP?STRNCMP           0054H    0008H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\GPS≤‚ ‘ (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0233H         SEGMENT       ?C_C51STARTUP
+  I:005CH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0236H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0233H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0233H         LINE#         133
+  C:0235H         LINE#         134
+  C:0236H         LINE#         135
+  C:0237H         LINE#         136
+  C:0239H         LINE#         185
+  C:023CH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  C:0135H         PUBLIC        Usart
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:023FH         PUBLIC        main
+  C:0003H         PUBLIC        UsartInit
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/12/2019  23:24:28  PAGE 3
+
+
+  D:0089H         PUBLIC        TMOD
+  C:0019H         SYMBOL        _?ix1000
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  D:0008H         PUBLIC        receiveData
+  -------         PROC          USARTINIT
+  C:0003H         LINE#         21
+  C:0003H         LINE#         22
+  C:0003H         LINE#         23
+  C:0006H         LINE#         24
+  C:0009H         LINE#         25
+  C:000CH         LINE#         26
+  C:000FH         LINE#         27
+  C:0012H         LINE#         28
+  C:0014H         LINE#         29
+  C:0016H         LINE#         30
+  C:0018H         LINE#         31
+  -------         ENDPROC       USARTINIT
+  -------         PROC          MAIN
+  C:023FH         LINE#         34
+  C:023FH         LINE#         35
+  C:023FH         LINE#         36
+  C:0242H         LINE#         37
+  -------         ENDPROC       MAIN
+  -------         PROC          USART
+  -------         DO            
+  D:004CH         SYMBOL        i
+  D:004DH         SYMBOL        identity
+  -------         ENDDO         
+  C:0135H         LINE#         40
+  C:0152H         LINE#         43
+  C:0165H         LINE#         45
+  C:0168H         LINE#         46
+  C:016FH         LINE#         47
+  C:0171H         LINE#         48
+  C:0178H         LINE#         50
+  C:0193H         LINE#         51
+  C:0193H         LINE#         52
+  C:0195H         LINE#         53
+  C:01A0H         LINE#         54
+  C:01A2H         LINE#         55
+  C:01A5H         LINE#         56
+  C:01A7H         LINE#         57
+  C:01A9H         LINE#         58
+  C:01A9H         LINE#         59
+  C:01A9H         LINE#         60
+  C:01A9H         LINE#         61
+  C:01A9H         LINE#         62
+  -------         ENDPROC       USART
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?COPY
+  C:00F6H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        STRNCMP
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/12/2019  23:24:28  PAGE 4
+
+
+  D:0054H         PUBLIC        ?_strncmp?BYTE
+  C:01C4H         PUBLIC        _strncmp
+  -------         ENDMOD        STRNCMP
+
+  -------         MODULE        ?C?CLDPTR
+  C:011CH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=93.0 xdata=0 code=577
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
