@@ -10,7 +10,10 @@ typedef unsigned char u8;
 /*
 struct rcvdata  {
     char position[];
-    char 
+    char
+    char
+    char
+    char
 };
 */
 
