@@ -7,6 +7,8 @@ sbit LED = P0^0;
 
 void delay(unsigned int i);
 void errorLog(int num);
+void parseGpsBuffer();
+void printGpsBuffer();
 
 void main(){
     Uart_Init();
@@ -32,7 +34,7 @@ void main(){
                     UartPrintf("Done!");
                     UartPrintf("\r\n");
                     UartPrintf("test: ");
-                    UartPrintf(SaveData.UTCTime);
+                    printGpsBuffer();
                     UartPrintf("\r\n");
 
 
@@ -57,6 +59,7 @@ void errorLog(int num){
     }
 }
 
+//TODO: Need some transform
 void parseGpsBuffer(){
     char *subString;
     char *subStringNext;
@@ -113,3 +116,40 @@ void parseGpsBuffer(){
 }
 
 
+void printGpsBuffer()
+{
+	if (Save_Data.isParseData)
+	{
+		Save_Data.isParseData = false;
+		
+		UartPrintf("Save_Data.UTCTime = ");
+		UartPrintf(Save_Data.UTCTime);
+		UartPrintf("\r\n");
+
+		if(Save_Data.isUsefull)
+		{
+			Save_Data.isUsefull = false;
+			UartPrintf("Save_Data.latitude = ");
+			UartPrintf(Save_Data.latitude);
+			UartPrintf("\r\n");
+
+
+			UartPrintf("Save_Data.N_S = ");
+			UartPrintf(Save_Data.N_S);
+			UartPrintf("\r\n");
+
+			UartPrintf("Save_Data.longitude = ");
+			UartPrintf(Save_Data.longitude);
+			UartPrintf("\r\n");
+
+			UartPrintf("Save_Data.E_W = ");
+			UartPrintf(Save_Data.E_W);
+			UartPrintf("\r\n");
+		}
+		else
+		{
+			UartPrintf("GPS DATA is not usefull!\r\n");
+		}
+		
+	}
+}

@@ -1,7 +1,7 @@
 /******************************************************************
-	×÷Õß£ºÉñÃØ²Ø±¦ÊÒ
-	µêÆÌ£ºILoveMCU.taobao.com
-	×îÖÕ½âÊÍÈ¨¹éÔ­×÷ÕßËùÓÐ£¬±ÉÊÓÆäËûµêÆÌ²»ÀÍ¶ø»ñµÄ³­Ï®ÐÐÎª£¡
+	ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½Ø²Ø±ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½Ì£ï¿½ILoveMCU.taobao.com
+	ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½Í¶ï¿½ï¿½ï¿½Ä³ï¿½Ï®ï¿½ï¿½Îªï¿½ï¿½
 ******************************************************************/
 #include "uart.h"
 
@@ -11,18 +11,17 @@ _SaveData Save_Data;
 
 void Uart_Init()					  			   
 {
-	SCON = 0X50;  //UART·½Ê½1£»8Î»UART
-	REN  = 1;     //ÔÊÐí´®ÐÐ¿Ú½ÓÊÕÊý¾Ý
-	PCON = 0x00;  //SMOD=0;²¨ÌØÂÊ²»¼Ó±¶
-	TMOD = 0x20;  //T1·½Ê½2£¬ÓÃÓÚ²úÉú²¨ÌØÂÊ
-	TH1  = 0xFD;  //×°³õÖµ
-	TL1  = 0xFD;
-	TR1  = 1;     //Æô¶¯¶¨Ê±Æ÷1
-	EA   = 1;     //´ò¿ªÈ«¾ÖÖÐ¶Ï¿ØÖÆ
-	ES   = 1;     //´ò¿ª´®ÐÐ¿ÚÖÐ¶Ï	
+	SCON = 0X50;  //UARTï¿½ï¿½Ê½1ï¿½ï¿½8Î»UART
+	TMOD = 0x20;  //T1ï¿½ï¿½Ê½2ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PCON = 0x80;  //SMOD=0;ï¿½ï¿½ï¿½ï¿½ï¿½Ê²ï¿½ï¿½Ó±ï¿½
+	TH1  = 0xF3;  //×°ï¿½ï¿½Öµ
+	TL1  = 0xF3;
+	TR1  = 1;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½1
+	EA   = 1;     //ï¿½ï¿½È«ï¿½ï¿½ï¿½Ð¶Ï¿ï¿½ï¿½ï¿½
+	ES   = 1;     //ï¿½ò¿ª´ï¿½ï¿½Ð¿ï¿½ï¿½Ð¶ï¿½	
 }
 
-void UartPrintf(unsigned char *p)				//·¢ËÍ×Ö·û´®
+void UartPrintf(unsigned char *p)				//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 {	
  	while(*p)
  	{
@@ -35,7 +34,7 @@ void UartPrintf(unsigned char *p)				//·¢ËÍ×Ö·û´®
 	}   
 }
 
-void UartPrintASCII(unsigned char c)				//·¢ËÍÒ»¸ö×Ö·û
+void UartPrintASCII(unsigned char c)				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½
 { 
     TI=0;   
     SBUF=c;   
@@ -61,22 +60,22 @@ void RECEIVE_DATA(void) interrupt 4 using 3
 	{
 	   gpsRxBuffer[RX_Count++] = temp;
 	}
-	else if(gpsRxBuffer[0] == '$' &gpsRxBuffer[4] == 'M' && gpsRxBuffer[5] == 'C')			//È·¶¨ÊÇ·ñÊÕµ½"GPRMC/GNRMC"ÕâÒ»Ö¡Êý¾Ý
+	else if(gpsRxBuffer[0] == '$' &gpsRxBuffer[4] == 'M' && gpsRxBuffer[5] == 'C')			//È·ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Õµï¿½"GPRMC/GNRMC"ï¿½ï¿½Ò»Ö¡ï¿½ï¿½ï¿½ï¿½
 	{
 		gpsRxBuffer[RX_Count++] = temp;
 		if(temp == '\n')									   
 		{
-			memset(Save_Data.GPS_Buffer, 0, GPS_Buffer_Length);      //Çå¿Õ
-			memcpy(Save_Data.GPS_Buffer, gpsRxBuffer, RX_Count); 	//±£´æÊý¾Ý
+			memset(Save_Data.GPS_Buffer, 0, GPS_Buffer_Length);      //ï¿½ï¿½ï¿½
+			memcpy(Save_Data.GPS_Buffer, gpsRxBuffer, RX_Count); 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Save_Data.isGetData = true;
 			RX_Count = 0;
-			memset(gpsRxBuffer, 0, gpsRxBufferLength);      //Çå¿Õ				
+			memset(gpsRxBuffer, 0, gpsRxBufferLength);      //ï¿½ï¿½ï¿½				
 		}
 		
 		if(RX_Count >= 75)
 		{
 			RX_Count = 75;
-			gpsRxBuffer[RX_Count] = '\0';//Ìí¼Ó½áÊø·û
+			gpsRxBuffer[RX_Count] = '\0';//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}			
 	}
 	ES=1; 
@@ -87,7 +86,7 @@ void clrStruct()
 	Save_Data.isGetData = false;
 	Save_Data.isParseData = false;
 	Save_Data.isUsefull = false;
-	memset(Save_Data.GPS_Buffer, 0, GPS_Buffer_Length);      //Çå¿Õ
+	memset(Save_Data.GPS_Buffer, 0, GPS_Buffer_Length);      //ï¿½ï¿½ï¿½
 	memset(Save_Data.UTCTime, 0, UTCTime_Length);
 	memset(Save_Data.latitude, 0, latitude_Length);
 	memset(Save_Data.N_S, 0, N_S_Length);

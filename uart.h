@@ -1,13 +1,12 @@
 /******************************************************************
-	×÷Õß£ºÉñÃØ²Ø±¦ÊÒ
-	µêÆÌ£ºILoveMCU.taobao.com
-	×îÖÕ½âÊÍÈ¨¹éÔ­×÷ÕßËùÓÐ£¬±ÉÊÓÆäËûµêÆÌ²»ÀÍ¶ø»ñµÄ³­Ï®ÐÐÎª£¡
+	ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½Ø²Ø±ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½Ì£ï¿½ILoveMCU.taobao.com
+	ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½Í¶ï¿½ï¿½ï¿½Ä³ï¿½Ï®ï¿½ï¿½Îªï¿½ï¿½
 ******************************************************************/
 #ifndef __GPS_H__
 #define __GPS_H__
 
 #include <reg52.h>
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +14,7 @@
 #define false 0
 #define true 1
 
-//¶¨ÒåÊý×é³¤¶È
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é³¤ï¿½ï¿½
 #define GPS_Buffer_Length 80
 #define UTCTime_Length 11
 #define latitude_Length 11
@@ -26,19 +25,19 @@
 typedef struct SaveData 
 {
 	char GPS_Buffer[GPS_Buffer_Length];
-	char isGetData;		//ÊÇ·ñ»ñÈ¡µ½GPSÊý¾Ý
-	char isParseData;	//ÊÇ·ñ½âÎöÍê³É
-	char UTCTime[UTCTime_Length];		//UTCÊ±¼ä
-	char latitude[latitude_Length];		//Î³¶È
+	char isGetData;		//ï¿½Ç·ï¿½ï¿½È¡ï¿½ï¿½GPSï¿½ï¿½ï¿½ï¿½
+	char isParseData;	//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	char UTCTime[UTCTime_Length];		//UTCÊ±ï¿½ï¿½
+	char latitude[latitude_Length];		//Î³ï¿½ï¿½
 	char N_S[N_S_Length];		//N/S
-	char longitude[longitude_Length];		//¾­¶È
+	char longitude[longitude_Length];		//ï¿½ï¿½ï¿½ï¿½
 	char E_W[E_W_Length];		//E/W
-	char isUsefull;		//¶¨Î»ÐÅÏ¢ÊÇ·ñÓÐÐ§
+	char isUsefull;		//ï¿½ï¿½Î»ï¿½ï¿½Ï¢ï¿½Ç·ï¿½ï¿½ï¿½Ð§
 } xdata _SaveData;
 
 
 
-//º¯Êý»òÕß±äÁ¿ÉùÃ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 extern void Uart_Init();
 extern void UartPrintf(unsigned char *p);
 extern void UartPrintASCII(unsigned char c);
