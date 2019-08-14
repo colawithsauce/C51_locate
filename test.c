@@ -7,6 +7,7 @@ sbit LED = P0^0;
 
 void delay(unsigned int i);
 void errorLog(int num);
+void parseGpsBuffer();
 
 void main(){
     Uart_Init();
@@ -22,21 +23,23 @@ void main(){
                 }else{
                     continue;
                 }
-            if(!Parse){
-                delay(10000);
-                if (!Parse){
+        }
+        if(!Parse){
+            delay(10000);
+            if (!Parse){
 
-                    LED = ~LED;
-                    parseGpsBuffer();
-                    UartPrintf("\r\n");
-                    UartPrintf("Done!");
-                    UartPrintf("\r\n");
-                    UartPrintf("test: ");
-                    UartPrintf(SaveData.UTCTime);
-                    UartPrintf("\r\n");
+                LED = ~LED;
+                parseGpsBuffer();
+                UartPrintf("\r\n");
+                UartPrintf("Done!");
+                UartPrintf("\r\n");
+                UartPrintf("test: ");
+                UartPrintf(Save_Data.UTCTime);
+                UartPrintf("\r\n");
 
 
-                }
+            }else{
+                continue;
             }
         }
     }
