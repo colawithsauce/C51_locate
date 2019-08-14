@@ -24,21 +24,21 @@ void main(){
                 }else{
                     continue;
                 }
-            if(!Parse){
-                delay(10000);
-                if (!Parse){
+        }
+        if(!Parse){
+            delay(10000);
+            if (!Parse){
 
-                    LED = ~LED;
-                    parseGpsBuffer();
-                    UartPrintf("\r\n");
-                    UartPrintf("Done!");
-                    UartPrintf("\r\n");
-                    UartPrintf("test: ");
-                    printGpsBuffer();
-                    UartPrintf("\r\n");
+                LED = ~LED;
+                parseGpsBuffer();
+                UartPrintf("\r\n");
+                UartPrintf("Done!");
+                UartPrintf("\r\n");
+                UartPrintf("test: ");
+                printGpsBuffer();
+                UartPrintf("\r\n");
 
 
-                }
             }
         }
     }
